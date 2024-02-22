@@ -1,0 +1,40 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Estilo Global */
+body {
+  background-color: #121212;
+  color: #edebeb;
+  font-family: "Arial", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 100vh;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+a {
+  color: #2595e5;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.center {
+  text-align: center;
+}
+
+.active {
+  background-color: #fff;
+  color: #121212;
+}
