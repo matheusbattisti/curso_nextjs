@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1 {
+  font-size: 20px;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+.p-global {
+  color: red;
+}
+
+#heading-global {
+  background-color: #383234;
+  color: #ff1;
+}
