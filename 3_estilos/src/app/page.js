@@ -2,6 +2,7 @@ import MyComponent from "@/components/MyComponent";
 import styles from "./page.module.css";
 import Container from "@/components/Container";
 import CustomButton from "@/components/CustomButton";
+import Button from "@/components/Button";
 
 export default function Home() {
   return (
@@ -19,7 +20,9 @@ export default function Home() {
       <MyComponent />
       {/* 4 - SASS */}
       <Container />
-      {/* 5 - Styled Components */}
+      {/* 5 - SASS Com CSS MOdules */}
+      <Button />
+      {/*6 - Styled Components */}
       <CustomButton>Clique aqui!</CustomButton>
     </main>
   );
