@@ -17,20 +17,19 @@ export default async function Home() {
               <h2 className="text-xl font-semibold">{todo.titulo}</h2>
               <p>{todo.descricao}</p>
               <div className="flex space-x-2 mt-3">
-                <Link href={`/todos/${todo.id}`}>
-                  <a className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Visualizar
-                  </a>
-                </Link>
-                <Link href={`/todos/edit/${todo.id}`}>
-                  <a className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
-                    Editar
-                  </a>
-                </Link>
-                <button
-                  onClick={() => console.log("Excluir:", todo.id)}
-                  className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+                <Link
+                  href={`/todos/${todo.id}`}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                 >
+                  Visualizar
+                </Link>
+                <Link
+                  href={`/todos/edit/${todo.id}`}
+                  className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Editar
+                </Link>
+                <button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                   Excluir
                 </button>
               </div>
