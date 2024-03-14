@@ -3,6 +3,9 @@ import { db } from "@/db";
 import { notFound } from "next/navigation";
 
 export default async function TodoShow(props) {
+  // Para testar o loading
+  await new Promise((a) => setTimeout(a, 2000));
+
   const id = Number(props.params.id);
 
   const todo = await db.todo.findFirst({
