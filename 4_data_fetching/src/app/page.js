@@ -3,6 +3,8 @@ import { db } from "@/db";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
+import { deleteTodo } from "@/actions";
+
 export default async function Home() {
   // 3 - Resgatando dados do banco
   const todos = await db.todo.findMany();
@@ -10,17 +12,17 @@ export default async function Home() {
   console.log(todos);
 
   // 8 - componente cliente em server
-  async function deleteTodo(formData) {
-    "use server";
+  // async function deleteTodo(formData) {
+  //   "use server";
 
-    const id = parseInt(formData.get("id"));
+  //   const id = parseInt(formData.get("id"));
 
-    await db.todo.delete({
-      where: { id },
-    });
+  //   await db.todo.delete({
+  //     where: { id },
+  //   });
 
-    redirect("/");
-  }
+  //   redirect("/");
+  // }
 
   return (
     <>
