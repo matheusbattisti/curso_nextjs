@@ -32,6 +32,9 @@ export async function addTodo(formData) {
 }
 
 export async function findTodoById(id) {
+  // 11 - erro backend - error.js
+  throw new Error("Ops!");
+
   const todo = await db.todo.findFirst({
     where: { id },
   });
