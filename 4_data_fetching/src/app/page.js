@@ -5,6 +5,9 @@ import { redirect } from "next/navigation";
 
 import { deleteTodo, updateTodo } from "@/actions";
 
+// Cache - Revalidando por tempo
+export const revalidate = 20;
+
 export default async function Home() {
   // 3 - Resgatando dados do banco
   const todos = await db.todo.findMany();
