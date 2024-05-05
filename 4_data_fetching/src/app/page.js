@@ -3,7 +3,7 @@ import { db } from "@/db";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { deleteTodo } from "@/actions";
+import { deleteTodo, updateTodo } from "@/actions";
 
 export default async function Home() {
   // 3 - Resgatando dados do banco
@@ -30,7 +30,12 @@ export default async function Home() {
         <h1 className="text-2xl font-bold mb-4">Todos!</h1>
         <div className="space-y-4">
           {todos.map((todo) => (
-            <div key={todo.id} className="bg-gray-100 p-4 rounded-lg shadow">
+            <div
+              key={todo.id}
+              className={`bg-gray-100 p-4 rounded-lg shadow ${
+                todo.status === "completa" ? "bg-green-100" : ""
+              }`}
+            >
               <h2 className="text-xl font-semibold">{todo.titulo}</h2>
               <p>{todo.descricao}</p>
               <div className="flex space-x-2 mt-3">

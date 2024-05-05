@@ -33,7 +33,7 @@ export async function addTodo(formData) {
 
 export async function findTodoById(id) {
   // 11 - erro backend - error.js
-  throw new Error("Ops!");
+  // throw new Error("Ops!");
 
   const todo = await db.todo.findFirst({
     where: { id },
@@ -64,6 +64,31 @@ export async function updateTodo(formState, formData) {
     data: {
       titulo,
       descricao,
+    },
+  });
+
+  redirect("/");
+}
+
+export async function toggleTodoStatus(todoId) {
+  const todo = await db.todo.findUnique({
+    where: {
+      id: todoId,
+    },
+  });
+
+  if (!todo) {
+    throw new Error("Todo não encontrado");
+  }
+
+  const novoStatus = todo.status === "pendente" ? "completa" : "pendente";
+
+  await db.todo.update({
+    where: {
+      id: todoId,
+    },
+    data: {
+      status: novoStatus,
     },
   });
 
