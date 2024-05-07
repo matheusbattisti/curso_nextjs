@@ -6,7 +6,10 @@ import { redirect } from "next/navigation";
 import { deleteTodo, updateTodo } from "@/actions";
 
 // Cache - Revalidando por tempo
-export const revalidate = 20;
+// export const revalidate = 20;
+
+// Remoção de completa de cache
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   // 3 - Resgatando dados do banco
