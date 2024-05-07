@@ -73,19 +73,25 @@ export async function updateTodo(formState, formData) {
   redirect("/");
 }
 
-export async function toggleTodoStatus(todoId) {
+export async function toggleTodoStatus(formData) {
+  const todoId = parseInt(formData.get("id"));
+
+  // Busca o todo com o ID fornecido.
   const todo = await db.todo.findUnique({
     where: {
       id: todoId,
     },
   });
 
+  // Verifica se o todo existe; se não, lança um erro.
   if (!todo) {
     throw new Error("Todo não encontrado");
   }
 
+  // Determina o novo status baseado no status atual.
   const novoStatus = todo.status === "pendente" ? "completa" : "pendente";
 
+  // Atualiza o todo no banco de dados com o novo status.
   await db.todo.update({
     where: {
       id: todoId,
@@ -95,5 +101,6 @@ export async function toggleTodoStatus(todoId) {
     },
   });
 
+  // Redireciona o usuário para a página inicial (ou outra página conforme necessário).
   redirect("/");
 }

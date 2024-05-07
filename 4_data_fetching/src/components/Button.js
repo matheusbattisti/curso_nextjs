@@ -1,7 +1,7 @@
 "use client";
 
-const Button = ({ children }) => {
-  return <button>{children}</button>;
+const Button = ({ children, className }) => {
+  return <button className={className}>{children}</button>;
 };
 
 export default Button;

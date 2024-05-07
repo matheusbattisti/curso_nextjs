@@ -3,7 +3,9 @@ import { db } from "@/db";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
-import { deleteTodo, updateTodo } from "@/actions";
+import Checkbox from "@/components/Checkbox";
+
+import { deleteTodo, toggleTodoStatus, updateTodo } from "@/actions";
 
 // Cache - Revalidando por tempo
 // export const revalidate = 20;
@@ -42,8 +44,21 @@ export default async function Home() {
                 todo.status === "completa" ? "bg-green-100" : ""
               }`}
             >
-              <h2 className="text-xl font-semibold">{todo.titulo}</h2>
-              <p>{todo.descricao}</p>
+              <div className="flex justify-between items-start">
+                <div>
+                  <h2 className="text-xl font-semibold">{todo.titulo}</h2>
+                  <p>{todo.descricao}</p>
+                </div>
+                {/* Formulário para alternar o status */}
+                <div className="flex items-center gap-2">
+                  <p className="italic">completar?</p>
+                  <form action={toggleTodoStatus}>
+                    <input type="hidden" name="id" value={todo.id} />
+                    <Checkbox checked={todo.status === "completa"} />
+                  </form>
+                </div>
+              </div>
+
               <div className="flex space-x-2 mt-3">
                 <Link
                   href={`/todos/${todo.id}`}
@@ -62,7 +77,9 @@ export default async function Home() {
                 </button> */}
                 <form action={deleteTodo}>
                   <input type="hidden" name="id" value={todo.id} />
-                  <Button>Excluir</Button>
+                  <Button className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    Excluir
+                  </Button>
                 </form>
               </div>
             </div>
