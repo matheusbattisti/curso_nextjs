@@ -9,7 +9,7 @@ import { deleteTodo, updateTodo } from "@/actions";
 // export const revalidate = 20;
 
 // Remoção de completa de cache
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
 export default async function Home() {
   // 3 - Resgatando dados do banco
