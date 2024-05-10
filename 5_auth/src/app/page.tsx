@@ -6,6 +6,7 @@ export default function Home() {
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
         <Link href="/client">Página client component</Link>
         <Link href="/server">Página server component</Link>
+        <Link href="/middleware">Página middleware</Link>
       </div>
     </main>
   );
