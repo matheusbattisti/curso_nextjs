@@ -14,8 +14,6 @@ export default async function Home() {
     userId = session.user.userId;
   }
 
-  console.log(posts);
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Posts</h1>

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { getUserPosts, deletePost } from "@/actions";
 import { Post as PostType } from "types/Post";
 import { auth } from "auth";
+import { redirect } from "next/navigation";
 
 const MyPosts: React.FC = async () => {
   const session = await auth();
@@ -11,6 +12,8 @@ const MyPosts: React.FC = async () => {
 
   if (session) {
     userId = session.user.userId;
+  } else {
+    redirect("/");
   }
 
   console.log(userId);
