@@ -6,6 +6,8 @@ import { updateUserProfile } from "@/actions";
 import FlashMessage from "./FlashMessage";
 import ImagePreview from "./ImagePreview";
 import { User } from "next-auth";
+import Button from "./Button";
+import Label from "./Label";
 
 type ProfileFormProps = {
   user: User;
@@ -18,7 +20,7 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user }) => {
   });
 
   return (
-    <div className="max-w-lg mx-auto p-4 border rounded shadow-sm">
+    <div className="w-full p-4 border border-zinc-300 rounded">
       {formState.message && (
         <FlashMessage message={formState.message} type={formState.type} />
       )}
@@ -30,28 +32,22 @@ const ProfileForm: React.FC<ProfileFormProps> = ({ user }) => {
       >
         <input type="hidden" name="id" value={user.id} />
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Nome
-          </label>
+          <Label text="Nome" htmlFor="name" />
           <input
             type="text"
+            id="name"
             name="name"
+            placeholder="Digite seu nome"
             defaultValue={user.name || ""}
-            className="mt-1 p-2 border border-gray-300 rounded w-full"
+            className="p-2 border border-zinc-300 rounded w-full text-sm placeholder:text-zinc-500 focus:ring-0 focus:outline-none"
           />
         </div>
-        <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Imagem
-          </label>
-          <ImagePreview currentImage={user.image || ""} />
+
+        <ImagePreview />
+
+        <div className="flex justify-end">
+          <Button type="submit" text="Salvar" />
         </div>
-        <button
-          type="submit"
-          className="self-end bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-        >
-          Salvar
-        </button>
       </form>
     </div>
   );

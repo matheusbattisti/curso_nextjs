@@ -5,6 +5,8 @@ import { useFormState } from "react-dom";
 import { createPost } from "@/actions";
 import FlashMessage from "./FlashMessage";
 import ImagePreview from "./ImagePreview";
+import Button from "./Button";
+import Label from "./Label";
 
 const CreatePostForm: React.FC = () => {
   const [formState, formAction] = useFormState(createPost, {
@@ -22,25 +24,21 @@ const CreatePostForm: React.FC = () => {
         encType="multipart/form-data"
         className="flex flex-col gap-4"
       >
-        <ImagePreview currentImage={null} />
+        <ImagePreview />
 
         <div>
-          <label className="block text-sm font-medium text-gray-700">
-            Conteúdo
-          </label>
+          <Label text="Conteúdo do post" htmlFor="content" />
           <textarea
+            id="content"
             name="caption"
-            className="mt-1 p-2 border border-gray-300 rounded w-full"
-            rows={4}
+            className="w-full h-32 p-2 border border-zinc-300 rounded text-sm font-medium placeholder:text-zinc-500 focus:ring-0 focus:outline-none"
+            placeholder="Digite algo"
           ></textarea>
         </div>
 
-        <button
-          type="submit"
-          className="self-end bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700"
-        >
-          Criar Post
-        </button>
+        <div className="flex justify-end">
+          <Button type="submit" text="Criar Post" />
+        </div>
       </form>
     </>
   );

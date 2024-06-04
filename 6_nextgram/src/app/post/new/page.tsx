@@ -10,10 +10,13 @@ const CreatePostPage: React.FC = async () => {
   if (!session || !session.user?.email) return redirect(`/`);
 
   return (
-    <div className="max-w-lg mx-auto p-4 border rounded shadow-sm">
-      <h1 className="text-2xl font-bold mb-4">Criar Novo Post</h1>
-
-      <CreatePostForm />
+    <div className="w-[35rem] mx-auto p-4 my-10">
+      <h1 className="text-[2rem] leading-10 text-center font-semibold">
+        Criar novo post
+      </h1>
+      <div className="border border-zinc-300 p-4 rounded mt-8">
+        <CreatePostForm />
+      </div>
     </div>
   );
 };

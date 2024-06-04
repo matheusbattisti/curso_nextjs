@@ -37,9 +37,6 @@ export async function getUserByEmail(
 
   const user = await prisma.user.findFirst({
     where: { email: email },
-    include: {
-      // posts: true, // Assumindo que você tem um relacionamento 'posts' no modelo de usuário
-    },
   });
 
   return user;

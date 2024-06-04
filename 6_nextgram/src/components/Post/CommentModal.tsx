@@ -2,12 +2,12 @@
 
 import React, { useState } from "react";
 import Modal from "react-modal";
-import { Comment as CommentType } from "types/Comment";
 import { Post as PostType } from "types/Post";
 import { addComment } from "@/actions";
-import { FiMessageSquare } from "react-icons/fi";
-import { revalidatePath } from "next/cache";
 import FlashMessage from "../FlashMessage";
+import { GrClose } from "react-icons/gr";
+import Button from "../Button";
+import Image from "next/image";
 
 interface CommentModalProps {
   post: PostType;
@@ -30,7 +30,7 @@ const CommentModal: React.FC<CommentModalProps> = ({
 
   const handleAddComment = async () => {
     if (!currentUserId) {
-      window.location.href = "/login";
+      window.location.href = "/signin";
       return;
     }
 
@@ -56,20 +56,40 @@ const CommentModal: React.FC<CommentModalProps> = ({
       onRequestClose={onRequestClose}
       contentLabel="Comments"
       ariaHideApp={false}
+      className={
+        "w-[704px] mx-auto mt-28 bg-white rounded border border-zinc-300"
+      }
     >
       <div className="p-4">
-        <h2 className="text-xl font-bold mb-4">Comentários</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="text-xl font-bold mb-4">Comentários</h2>
+          <button
+            onClick={onRequestClose}
+            className="bg-red-600 hover:bg-red-400 text-white p-2 rounded-full"
+          >
+            <GrClose />
+          </button>
+        </div>
         {flashMessage && (
           <FlashMessage
             message={flashMessage.message}
             type={flashMessage.type}
           />
         )}
-        <div className="mb-4">
+        <div className="mb-4 flex flex-col gap-0.5">
           {post.comments && post.comments.length > 0 ? (
             post.comments.map((comment) => (
-              <div key={comment.id} className="mb-2">
-                <p>
+              <div key={comment.id} className="flex items-center">
+                {post.user.image && (
+                  <Image
+                    src={post.user.image}
+                    alt={`${post.user.name}'s profile`}
+                    className="w-10 h-10 object-cover rounded-full mr-3"
+                    width={40}
+                    height={40}
+                  />
+                )}
+                <p className="text-sm">
                   <strong>{comment.user.name}:</strong> {comment.content}
                 </p>
               </div>
@@ -79,27 +99,23 @@ const CommentModal: React.FC<CommentModalProps> = ({
           )}
         </div>
         {currentUserId && (
-          <div className="mb-4">
+          <div className="mb-4 flex flex-col gap-6">
             <textarea
-              className="w-full p-2 border rounded"
+              className="w-full h-32 p-2 border border-zinc-300 rounded text-sm font-medium placeholder:text-zinc-500 focus:ring-0 focus:outline-none"
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder="Adicione um comentário"
             />
-            <button
-              onClick={handleAddComment}
-              className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-            >
-              Comentar
-            </button>
+
+            <div className="flex justify-end">
+              <Button
+                type="button"
+                text="Comentar"
+                onClick={handleAddComment}
+              />
+            </div>
           </div>
         )}
-        <button
-          onClick={onRequestClose}
-          className="mt-4 bg-gray-300 py-2 px-4 rounded"
-        >
-          Fechar
-        </button>
       </div>
     </Modal>
   );

@@ -20,8 +20,8 @@ const FlashMessage: React.FC<FlashMessageProps> = ({ message, type }) => {
 
   return (
     <div
-      className={`fixed top-4 left-1/2 transform -translate-x-1/2 p-4 rounded shadow-md ${
-        type === "success" ? "bg-green-500 text-white" : "bg-red-500 text-white"
+      className={`fixed top-6 right-6 p-4 rounded shadow-md text-white ${
+        type === "success" ? "bg-emerald-600" : "bg-red-600"
       }`}
     >
       {message}
